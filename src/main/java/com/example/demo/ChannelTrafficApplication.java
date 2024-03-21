@@ -16,7 +16,103 @@ public class ChannelTrafficApplication {
 		SpringApplication.run(ChannelTrafficApplication.class, args);
 	}
 
+	public int longestSubstring(int i,int j,int count,String a,String b) {
+		
+		if(i==0 || j==0) {
+			return count;
+		}
+		if(a.charAt(i-1)==b.charAt(j-1)) {
+			count=longestSubstring(i-1, j-1, count+1, a, b);
+		}
+		int count1=longestSubstring(i-1, j, 0, a, b);
+		int count2=longestSubstring(i, j-1, 0, a, b);
+		return Math.max(count,Math.max(count1, count2));
+		
+	}
+	
+	public int longestSubsequence(String a,String b,int i,int j) {
+		
+		if(i==0 || j==0) {
+			return 0;
+		}
+		
+		if(a.charAt(i-1)==b.charAt(j-1)) {
+			return longestSubsequence(a, b, i-1, j-1)+1;
+		}
+		return Integer.max(longestSubsequence(a, b, i-1, j), longestSubsequence(a, b, i, j-1));
+	}
+	
+//	int fib(int i) {
+//		if(i<=1) {
+//			return i;
+//		}
+//		
+//		return fib(i-1)+fib(i-2);
+//	}
+	
+	void fib(int n) {
+		int a=0,b=1;
+		System.out.print(a+" "+b+" ");
+		for(int i=2;i<=n;i++) {
+			int c=a+b;
+			a=b;
+			b=c;
+			System.out.print(c+" ");
+		}
+		
+	}
+	
+	public String longestCommonPrefix(String[] S) {
+		if(S.length==0) {
+			return "";
+		}
+		String prefix=S[0];
+		for(int i=1;i<S.length;i++) {
+			while(S[i].indexOf(prefix)!=0) {
+				prefix=prefix.substring(0, prefix.length()-1);
+				if(prefix.isEmpty()) {
+					return "";
+				}
+			}
+		}
+		return prefix;
+	}
+	
 	@PostConstruct
+	public void printTest() {
+		String s[]= {"flower", "flow", "flight"};
+		
+		System.out.println(longestCommonPrefix(s));
+		
+		
+//		fib(10);
+		
+//		for(int i=0;i<10;i++) {
+//			System.out.print(fib(i)+" ");
+//		}
+		
+//		String a="ezupkr";
+//		String b="ubmrapg";
+//		
+//		System.out.println(longestSubsequence(a,b,a.length(),b.length()));
+//		
+		
+		
+//		for(int i=0;i<s.length();i++) {
+//			String substr="";
+//			for(int j=i;j<s.length();j++) {
+//				substr+=s.charAt(j);
+//				System.out.println(substr);
+//				
+//			}
+//		}
+		
+		
+		
+	}
+	
+	
+//	@PostConstruct
 	public void test() {
 		LL list=new LL();
 		list.insertAtLastWithoutTail(1);
