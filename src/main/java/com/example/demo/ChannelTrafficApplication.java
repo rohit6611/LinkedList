@@ -78,11 +78,61 @@ public class ChannelTrafficApplication {
 		return prefix;
 	}
 	
+	public void rec(int x) {
+		if(x==0) {
+			return;
+		}
+		
+		rec(x-1);
+		System.out.println(x);
+	}
+	
+	public void sortDutch() {
+		
+		int[] arr= {0,1,0,2,1,1,0,1,2,2,1,2,0,2,0,1,0,2,2,1,2,2,0,1,2};
+		int count0=0,count1=0,count2=0;
+		System.out.println(arr.length);
+		for(int element:arr) {
+			if(element==0) {
+				count0++;
+			}
+			else if(element==1) {
+				count1++;
+			}else {
+				count2++;
+			}
+		}
+		int i=0;
+		while(count0>0) {
+			arr[i]=0;
+			count0--;
+			i++;
+		}
+		while(count1>0) {
+			arr[i]=1;
+			count1--;
+			i++;
+		}
+		while(count2>0) {
+			arr[i]=2;
+			count2--;
+			i++;
+		}
+		System.out.println(Arrays.toString(arr));
+		System.out.println(arr.length);
+	}
+	
+	
+	
 	@PostConstruct
 	public void printTest() {
 		String s[]= {"flower", "flow", "flight"};
 		
-		System.out.println(longestCommonPrefix(s));
+		sortDutch();
+		
+//		rec(5);
+		
+//		System.out.println(longestCommonPrefix(s));
 		
 		
 //		fib(10);
